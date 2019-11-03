@@ -1,0 +1,89 @@
+package numeroslcd;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author jassonesteban
+ */
+public class Numeroslcd {
+
+   
+
+    public static void main(String[] args) {
+        Scanner numero = new Scanner(System.in);
+        int number=0;
+        System.out.print("programa que muestra los numeros en formato LCD\n");
+         System.out.print("para finalizar el programa, ingrese 0.0\n");
+        System.out.print("Por favor, ingrese un numero: \n");
+        do {
+            try {
+                number = numero.nextInt();
+                String arg = Integer.toString(number);
+                int caracteres = arg.length();
+                int[][][] carac = new int[caracteres][3][3];
+                int[][] uno = {{0, 0, 0}, {0, 0, 1}, {0, 0, 1}};
+                int[][] dos = {{0, 1, 0}, {0, 1, 1}, {1, 1, 0}};
+                int[][] tres = {{0, 1, 0}, {0, 1, 1}, {0, 1, 1}};
+                int[][] cuatro = {{0, 0, 0}, {1, 1, 1}, {0, 0, 1}};
+                int[][] cinco = {{0, 1, 0}, {1, 1, 0}, {0, 1, 1}};
+                int[][] seis = {{0, 1, 0}, {1, 1, 0}, {1, 1, 1}};
+                int[][] siete = {{0, 1, 0}, {0, 0, 1}, {0, 0, 1}};
+                int[][] ocho = {{0, 1, 0}, {1, 1, 1}, {1, 1, 1}};
+                int[][] nueve = {{0, 1, 0}, {1, 1, 1}, {0, 1, 1}};
+                int[][] cero = {{0, 1, 0}, {1, 0, 1}, {1, 1, 1}};
+                int i, j, k;
+
+                for (i = 0; i < caracteres; i++) {
+                    if (arg.charAt(i) == '1') {
+                        carac[i] = uno;
+                    } else if (arg.charAt(i) == '2') {
+                        carac[i] = dos;
+                    } else if (arg.charAt(i) == '3') {
+                        carac[i] = tres;
+                    } else if (arg.charAt(i) == '4') {
+                        carac[i] = cuatro;
+                    } else if (arg.charAt(i) == '5') {
+                        carac[i] = cinco;
+                    } else if (arg.charAt(i) == '6') {
+                        carac[i] = seis;
+                    } else if (arg.charAt(i) == '7') {
+                        carac[i] = siete;
+                    } else if (arg.charAt(i) == '8') {
+                        carac[i] = ocho;
+                    } else if (arg.charAt(i) == '9') {
+                        carac[i] = nueve;
+                    } else if (arg.charAt(i) == '0') {
+                        carac[i] = cero;
+                    } else {
+                        carac[i] = cuatro;
+                    }
+                }
+
+                for (j = 0; j < 3; j++) {
+                    for (i = 0; i < caracteres; i++) {
+                        for (k = 0; k < 3; k++) {
+                            if (carac[i][j][k] == 1) {
+                                if (k == 1) {
+                                    System.out.print("_");
+                                } else {
+                                    System.out.print("|");
+                                }
+                            } else {
+                                System.out.print(" ");
+                            }
+                        }
+                        System.out.print(" ");
+                    }
+                    System.out.print("\n");
+                }
+
+            } catch(Exception excepcion){
+                System.out.println("¡Cuidado! Solo puedes insertar números. ");
+                System.out.println("el objeto error es" + excepcion);
+            }
+        } while (number != 0);
+    }
+}
